@@ -181,7 +181,7 @@ exports.createPg = async (req, res, next) => {
     req.body.address.locality = req.body.address.locality.toLowerCase();
     req.body.address.city = req.body.address.city.toLowerCase();
     req.body.address.state = req.body.address.state.toLowerCase();
-    req.body.pgType = req.body.pgType.toLowerCase();
+    // req.body.pgType = req.body.pgType.toLowerCase();
 
     // const newPg = await Pg.create(req.body);
     // res.status(201).json({
