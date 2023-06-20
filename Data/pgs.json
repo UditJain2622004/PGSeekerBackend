@@ -1,0 +1,391 @@
+[
+    {
+        "_id": "645fba86a9cd4ec1245839bf",
+        "name": "PG1",
+        "slug": "pg1",
+        "description": "This is a PG for males.",
+        "pgOwner": "645fca8ee8b8265194edb0dc",
+        "address": {
+            "locality": "Hyderabad",
+            "city": "Hyderabad",
+            "state": "Telangana",
+            "pincode": 500001
+        },
+        "sharing": [
+            {
+                "occupancy": 2,
+                "price": 5000,
+                "ac": true
+            }
+        ],
+        "minPrice": 5000,
+        "maxPrice": 10000,
+        "pgType": "male",
+        "food": "veg",
+        "pgContactInfo": {
+            "phone": "9876543210",
+            "email": "pg1@gmail.com"
+        },
+        "pgNearbyPlaces": [
+            {
+                "placeName": "Gachibowli Stadium",
+                "distance": 5
+            },
+            {
+                "placeName": "Inorbit Mall",
+                "distance": 10
+            }
+        ],
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                78.486917,
+                17.403522
+            ]
+        },
+        "pgAmenities": [
+            {
+                "wifi": true,
+                "parking": true,
+                "gym": true,
+                "pool": true
+            }
+        ],
+        "pgRules": [
+            {
+                "smoking": false,
+                "pets": false,
+                "guests": true,
+                "hasSecurityDeposit": true,
+                "hasNoticePeriod": true,
+                "hasGateClosingTime": true
+            }
+        ],
+        "noticePeriodDays": 30,
+        "securityDeposit": 10000,
+        "gateClosingTime": "10:00 PM",
+        "images": [
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683996643/images/Screenshot_2023-04-20_225440_swohme.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683996643/images/Screenshot_2023-04-20_225459_uv7wvr.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683996643/images/Screenshot_2023-04-20_225331_iu5ipq.png"
+        ]
+    },
+    {
+        "_id": "645fbad78d5430688571ba90",
+        "name": "The Nest",
+        "slug": "the-nest",
+        "description": "The Nest is a female-only PG located in Gachibowli, Hyderabad. It is a spacious and well-maintained property with all the amenities you need for a comfortable stay. The Nest is close to all major landmarks, including Gachibowli Stadium, Inorbit Mall, and Necklace Road. It is also a short walk from the nearest metro station. The Nest is the perfect place for women who are looking for a safe and comfortable place to stay in Hyderabad.",
+        "pgOwner": "645fcaafe8b8265194edb0de",
+        "address": {
+            "locality": "Gachibowli",
+            "city": "Hyderabad",
+            "state": "Telangana",
+            "pincode": 500002
+        },
+        "sharing": [
+            {
+                "occupancy": 3,
+                "price": 6000,
+                "ac": false
+            }
+        ],
+        "minPrice": 6000,
+        "maxPrice": 12000,
+        "pgType": "female",
+        "food": "both",
+        "pgContactInfo": {
+            "phone": "9876543211",
+            "email": "thenest@gmail.com"
+        },
+        "pgNearbyPlaces": [
+            {
+                "placeName": "Necklace Road",
+                "distance": 1
+            },
+            {
+                "placeName": "Hyderabad Central",
+                "distance": 2
+            }
+        ],
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                78.487917,
+                17.404522
+            ]
+        },
+        "pgAmenities": [
+            {
+                "wifi": true,
+                "parking": false,
+                "gym": false,
+                "pool": false
+            }
+        ],
+        "pgRules": [
+            {
+                "smoking": true,
+                "pets": true,
+                "guests": true,
+                "hasSecurityDeposit": true,
+                "hasNoticePeriod": true,
+                "hasGateClosingTime": true
+            }
+        ],
+        "noticePeriodDays": 60,
+        "securityDeposit": 5000,
+        "gateClosingTime": "11:00 PM",
+        "images": [
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683997984/images/Screenshot_2023-04-20_225639_ysjceb.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683997984/images/Screenshot_2023-04-20_225552_zanvvm.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683997983/images/Screenshot_2023-04-20_225719_einrgc.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683997982/images/Screenshot_2023-04-20_225700_spx3jx.png"
+        ]
+    },
+    {
+        "_id": "645fbaec25a9d2a2e7718b8f",
+        "name": "The Haven",
+        "slug": "the-haven",
+        "description": "The Haven is a mixed-gender PG located in Gachibowli, Hyderabad. It is a spacious and well-maintained property with all the amenities you need for a comfortable stay. The Haven is close to all major landmarks, including Gachibowli Stadium, Inorbit Mall, and Necklace Road. It is also a short walk from the nearest metro station. The Haven is the perfect place for people who are looking for a safe and comfortable place to stay in Hyderabad.",
+        "pgOwner": "645fcaece8b8265194edb0e2",
+        "address": {
+            "locality": "Gachibowli",
+            "city": "Hyderabad",
+            "state": "Telangana",
+            "pincode": 500002
+        },
+        "sharing": [
+            {
+                "occupancy": 2,
+                "price": 5000,
+                "ac": true
+            },
+            {
+                "occupancy": 3,
+                "price": 6000,
+                "ac": false
+            }
+        ],
+        "minPrice": 5000,
+        "maxPrice": 10000,
+        "pgType": "mixed",
+        "food": "veg",
+        "pgContactInfo": {
+            "phone": "9876543210",
+            "email": "thehaven@gmail.com"
+        },
+        "pgNearbyPlaces": [
+            {
+                "placeName": "Gachibowli Stadium",
+                "distance": 5
+            },
+            {
+                "placeName": "Inorbit Mall",
+                "distance": 10
+            }
+        ],
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                78.486917,
+                17.403522
+            ]
+        },
+        "pgAmenities": [
+            {
+                "wifi": true,
+                "parking": true,
+                "gym": true,
+                "pool": true
+            }
+        ],
+        "pgRules": [
+            {
+                "smoking": false,
+                "pets": false,
+                "guests": true,
+                "hasSecurityDeposit": true,
+                "hasNoticePeriod": true,
+                "hasGateClosingTime": true
+            }
+        ],
+        "noticePeriodDays": 30,
+        "securityDeposit": 10000,
+        "gateClosingTime": "10:00 PM",
+        "images": [
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998298/images/Screenshot_2023-04-20_225903_yyqstp.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998297/images/Screenshot_2023-04-20_225940_kezqrm.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998296/images/Screenshot_2023-04-20_225917_nr0e6z.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998291/images/Screenshot_2023-04-20_225841_gmcch5.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998291/images/Screenshot_2023-04-20_225807_n3u4q5.png"
+        ]
+    },
+    {
+        "_id": "645fbafbee0f0a29eae0acf9",
+        "name": "The Oasis",
+        "slug": "the-oasis",
+        "description": "The Oasis is a luxury PG located in Gachibowli, Hyderabad. It is a spacious and well-maintained property with all the amenities you need for a comfortable stay. The Oasis is close to all major landmarks, including Gachibowli Stadium, Inorbit Mall, and Necklace Road. It is also a short walk from the nearest metro station. The Oasis is the perfect place for people who are looking for a safe and comfortable place to stay in Hyderabad.",
+        "pgOwner": "645fcb0fe8b8265194edb0e4",
+        "address": {
+            "locality": "Gachibowli",
+            "city": "Hyderabad",
+            "state": "Telangana",
+            "pincode": 500002
+        },
+        "sharing": [
+            {
+                "occupancy": 2,
+                "price": 10000,
+                "ac": true
+            },
+            {
+                "occupancy": 3,
+                "price": 12000,
+                "ac": false
+            }
+        ],
+        "minPrice": 10000,
+        "maxPrice": 15000,
+        "pgType": "mixed",
+        "food": "both",
+        "pgContactInfo": {
+            "phone": "9876543212",
+            "email": "theoasis@gmail.com"
+        },
+        "pgNearbyPlaces": [
+            {
+                "placeName": "Gachibowli Stadium",
+                "distance": 5
+            },
+            {
+                "placeName": "Inorbit Mall",
+                "distance": 10
+            }
+        ],
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                78.486917,
+                17.403522
+            ]
+        },
+        "pgAmenities": [
+            {
+                "wifi": true,
+                "parking": true,
+                "gym": true,
+                "pool": true,
+                "spa": true,
+                "restaurant": true,
+                "laundry": true,
+                "security": true
+            }
+        ],
+        "pgRules": [
+            {
+                "smoking": false,
+                "pets": false,
+                "guests": true,
+                "hasSecurityDeposit": true,
+                "hasNoticePeriod": true,
+                "hasGateClosingTime": true
+            }
+        ],
+        "noticePeriodDays": 30,
+        "securityDeposit": 15000,
+        "gateClosingTime": "11:00 PM",
+        "images": [
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998696/images/Screenshot_2023-04-20_230203_lpcndo.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998696/images/Screenshot_2023-04-20_230217_luwffe.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998693/images/Screenshot_2023-04-20_230102_cjn325.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998694/images/Screenshot_2023-04-20_230141_iwkvaw.png"
+        ]
+    },
+    {
+        "_id": "645fbb09091e2907af283b76",
+        "name": "The Retreat",
+        "slug": "the-retreat",
+        "description": "The Retreat is a PG for working professionals located in Gachibowli, Hyderabad. It is a spacious and well-maintained property with all the amenities you need for a comfortable stay. The Retreat is close to all major landmarks, including Gachibowli Stadium, Inorbit Mall, and Necklace Road. It is also a short walk from the nearest metro station. The Retreat is the perfect place for people who are looking for a safe and comfortable place to stay in Hyderabad.",
+        "pgOwner": "645fcbfce8b8265194edb0f0",
+        "address": {
+            "locality": "Gachibowli",
+            "city": "Hyderabad",
+            "state": "Telangana",
+            "pincode": 500002
+        },
+        "sharing": [
+            {
+                "occupancy": 2,
+                "price": 15000,
+                "ac": true
+            },
+            {
+                "occupancy": 3,
+                "price": 18000,
+                "ac": false
+            }
+        ],
+        "minPrice": 15000,
+        "maxPrice": 20000,
+        "pgType": "mixed",
+        "food": "both",
+        "pgContactInfo": {
+            "phone": "9876543213",
+            "email": "theretreat@gmail.com"
+        },
+        "pgNearbyPlaces": [
+            {
+                "placeName": "Gachibowli Stadium",
+                "distance": 5
+            },
+            {
+                "placeName": "Inorbit Mall",
+                "distance": 10
+            }
+        ],
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                78.486917,
+                17.403522
+            ]
+        },
+        "pgAmenities": [
+            {
+                "wifi": true,
+                "parking": true,
+                "gym": true,
+                "pool": true,
+                "spa": true,
+                "restaurant": true,
+                "laundry": true,
+                "security": true,
+                "study room": true,
+                "common area": true,
+                "games room": true,
+                "24/7 security": true,
+                "water purifier": true,
+                "generator": true
+            }
+        ],
+        "pgRules": [
+            {
+                "smoking": false,
+                "pets": false,
+                "guests": true,
+                "hasSecurityDeposit": true,
+                "hasNoticePeriod": true,
+                "hasGateClosingTime": true
+            }
+        ],
+        "noticePeriodDays": 30,
+        "securityDeposit": 20000,
+        "gateClosingTime": "11:00 PM",
+        "images": [
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998842/images/Screenshot_2023-04-20_230300_p7l8u6.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998842/images/Screenshot_2023-04-20_230341_rn1dlw.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998833/images/Screenshot_2023-04-20_230404_jl7yvx.png",
+            "https://res.cloudinary.com/dc55eogtx/image/upload/v1683998838/images/Screenshot_2023-04-20_230424_a4qtsq.png"
+        ]
+    }
+]
