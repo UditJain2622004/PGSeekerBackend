@@ -7,9 +7,9 @@ exports.getAllReviews = async (req, res, next) => {
   try {
     let filter = {};
     if (req.params.pgId) filter = { pg: req.params.pgId };
-    const reviews = await Review.find(filter);
+    const reviews = await Review.find(filter).limit(10);
 
-    if (!reviews) return next(new AppError("No review found"));
+    // if (!reviews) return next(new AppError("No review found"));
 
     res.status(200).json({
       status: "success",
@@ -26,7 +26,7 @@ exports.getAllReviews = async (req, res, next) => {
 exports.createReview = async (req, res, next) => {
   try {
     req.body.pg = req.params.pgId;
-    req.body.user = req.user._id;
+    // req.body.user = req.user._id;
     const newReview = await Review.create(req.body);
     res.status(201).json({
       status: "success",
