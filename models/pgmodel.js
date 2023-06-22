@@ -21,16 +21,33 @@ const pgSchema = new mongoose.Schema(
       locality: { type: String, required: true },
       city: { type: String, required: true },
       state: { type: String, required: true },
-      pincode: { type: Number, required: true },
+      pincode: { type: String, required: true },
     },
 
-    sharing: [
-      {
-        occupancy: { type: Number, required: true },
-        price: { type: Number, required: true },
-        ac: { type: Boolean, default: false },
+    // sharing: [
+    //   {
+    //     occupancy: { type: Number, required: true },
+    //     price: { type: Number, required: true },
+    //     ac: { type: Boolean, default: false },
+    //   },
+    // ],
+
+    sharing: {
+      type: [
+        {
+          occupancy: { type: Number, required: true },
+          price: { type: Number, required: true },
+          ac: { type: Boolean, default: false },
+        },
+      ],
+      validate: {
+        validator: function (array) {
+          return array.length >= 1;
+        },
+        message: "At least one sharing element is required.",
       },
-    ],
+      required: true,
+    },
 
     minPrice: { type: Number },
     maxPrice: { type: Number },
@@ -110,9 +127,9 @@ const pgSchema = new mongoose.Schema(
       {
         smoking: { type: Boolean, default: false },
         // pets: { type: Boolean, default: false },
-        guests: { type: Boolean, default: true },
-        loudMusicAllowed: { type: Boolean, default: true },
-        alcoholAllowed: { type: Boolean, default: true },
+        guests: { type: Boolean, default: false },
+        loudMusicAllowed: { type: Boolean, default: false },
+        alcoholAllowed: { type: Boolean, default: false },
         // hasSecurityDeposit: { type: Boolean, default: false },
         // hasNoticePeriod: { type: Boolean, default: false },
         // hasGateClosingTimes: { type: Boolean, default: false },

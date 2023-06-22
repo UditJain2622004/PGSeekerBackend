@@ -11,6 +11,13 @@ module.exports = (err, req, res, next) => {
     err = new AppError(message, 400);
   }
 
+  //schema validation error
+  if (err.name === "ValidationError") {
+    console.log(err.message);
+    const message = err.message;
+    err = new AppError(message, 400);
+  }
+
   //mongoose duplicate key error
   if (err.code === 11000) {
     const message = `Duplicate ${Object.keys(err.keyValue)} entered`;
