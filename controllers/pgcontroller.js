@@ -45,9 +45,7 @@ exports.upload = multer({
 const uploadToCloudinary = async (localFilePath, req) => {
   try {
     console.log(localFilePath);
-    // var mainFolderName = "main";
 
-    // var filePathOnCloudinary = mainFolderName + "/" + localFilePath;
     const myCloud = await cloudinary.v2.uploader.upload(localFilePath, {
       folder: "images",
       width: 150,
@@ -58,9 +56,12 @@ const uploadToCloudinary = async (localFilePath, req) => {
       message: "Success",
       url: myCloud.secure_url,
     };
+
+    // throw new Error("Error");
   } catch (err) {
     fs.unlinkSync(localFilePath);
     console.log(err);
+    throw err;
   }
 };
 
@@ -69,28 +70,90 @@ exports.uploadPics = async (req, res, next) => {
     if (req.files) {
       console.log(req.files);
       const promises = [];
+      const maxRetries = 3; // Maximum number of upload retries
+      const retryDelay = 1000; // Delay between retries in milliseconds
 
       for (let i = 0; i < req.files.length; i++) {
         const localFilePath = "./uploads/" + req.files[i].originalname;
-        promises.push(uploadToCloudinary(localFilePath, req));
+        promises.push(
+          uploadToCloudinaryWithRetries(
+            localFilePath,
+            req,
+            maxRetries,
+            retryDelay
+          )
+        );
       }
 
       const results = await Promise.all(promises);
       const imageUrlList = results.map((result) => result.url);
       req.body.images = imageUrlList;
     }
-    const newPg = await Pg.create(req.body);
-    // console.log(newPg);
-    res.status(201).json({
-      status: "success",
-      data: {
-        Pg: newPg,
-      },
-    });
+    next();
+    // const newPg = await Pg.create(req.body);
+    // // console.log(newPg);
+    // res.status(201).json({
+    //   status: "success",
+    //   data: {
+    //     Pg: newPg,
+    //   },
+    // });
   } catch (err) {
-    next(err);
+    next();
   }
 };
+
+const uploadToCloudinaryWithRetries = async (
+  localFilePath,
+  req,
+  maxRetries,
+  retryDelay
+) => {
+  let retries = 0;
+  while (retries < maxRetries) {
+    try {
+      const result = await uploadToCloudinary(localFilePath, req);
+      return result;
+    } catch (err) {
+      retries++;
+      console.error(`Upload attempt ${retries} failed: ${err}`);
+      await wait(retryDelay);
+    }
+  }
+  throw new Error(`Failed to upload Pictures. Please try again!!`);
+};
+
+const wait = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+// exports.uploadPics = async (req, res, next) => {
+//   try {
+//     if (req.files) {
+//       console.log(req.files);
+//       const promises = [];
+
+//       for (let i = 0; i < req.files.length; i++) {
+//         const localFilePath = "./uploads/" + req.files[i].originalname;
+//         promises.push(uploadToCloudinary(localFilePath, req));
+//       }
+
+//       const results = await Promise.all(promises);
+//       const imageUrlList = results.map((result) => result.url);
+//       req.body.images = imageUrlList;
+//     }
+//     const newPg = await Pg.create(req.body);
+//     // console.log(newPg);
+//     res.status(201).json({
+//       status: "success",
+//       data: {
+//         Pg: newPg,
+//       },
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 //
 //
 //
@@ -159,7 +222,7 @@ exports.getPgById = async (req, res, next) => {
   }
 };
 
-exports.createPg = async (req, res, next) => {
+exports.createPgDoc = async (req, res, next) => {
   try {
     req.body.pgAmenities = JSON.parse(req.body.pgAmenities);
     req.body.sharing = JSON.parse(req.body.sharing);
@@ -192,6 +255,26 @@ exports.createPg = async (req, res, next) => {
     //   },
     // });
     next();
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.createPg = async (req, res, next) => {
+  try {
+    const newPg = await Pg.create(req.body);
+
+    const response = {
+      status: "success",
+      data: {
+        Pg: newPg,
+      },
+    };
+    if (req.files && !req.body.images) {
+      response.status = "imageUploadFailed";
+    }
+    // console.log(newPg);
+    res.status(201).json(response);
   } catch (err) {
     next(err);
   }

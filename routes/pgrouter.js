@@ -12,8 +12,9 @@ router
     authcontroller.protect,
     // authcontroller.restrictTo("pgOwner", "admin"),
     pgcontroller.upload.array("images", 50),
-    pgcontroller.createPg,
-    pgcontroller.uploadPics
+    pgcontroller.createPgDoc,
+    pgcontroller.uploadPics,
+    pgcontroller.createPg
   )
   .get(pgcontroller.getAllPgs);
 
