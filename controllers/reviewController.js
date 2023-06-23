@@ -7,7 +7,7 @@ exports.getAllReviews = async (req, res, next) => {
   try {
     let filter = {};
     if (req.params.pgId) filter = { pg: req.params.pgId };
-    const reviews = await Review.find(filter).limit(10);
+    const reviews = await Review.find(filter).limit(9);
 
     // if (!reviews) return next(new AppError("No review found"));
 
