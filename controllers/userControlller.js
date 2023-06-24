@@ -44,16 +44,18 @@ exports.updateMe = async (req, res, next) => {
 
 exports.getMe = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
-    if (!user) return next(new AppError("No document found with that id", 404));
-    const pgs = await Pg.find({ pgOwner: user._id });
-    res.status(200).json({
-      status: "success",
-      data: {
-        user,
-        pgs,
-      },
-    });
+    // const user = await User.findById(req.params.id);
+    // if (!user) return next(new AppError("No document found with that id", 404));
+    const pgs = await Pg.find({ pgOwner: req.params.id });
+    req.pgs = pgs;
+    next();
+    // res.status(200).json({
+    //   status: "success",
+    //   data: {
+    //     user,
+    //     pgs,
+    //   },
+    // });
   } catch (err) {
     next(err);
   }
@@ -95,12 +97,14 @@ exports.getUserById = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) return next(new AppError("No document found with that id", 404));
-    res.status(200).json({
+    let response = {
       status: "success",
-      data: {
-        user: user,
-      },
-    });
+      data: { user },
+    };
+    if (req.pgs) {
+      response.data.pgs = req.pgs;
+    }
+    res.status(200).json(response);
   } catch (err) {
     next(err);
   }

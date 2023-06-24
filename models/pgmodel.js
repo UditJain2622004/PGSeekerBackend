@@ -24,8 +24,7 @@ const pgSchema = new mongoose.Schema(
       pincode: {
         type: String,
         required: true,
-        match: /^[1-9][0-9]{5}$/,
-        message: "Invalid pincode",
+        match: [/^[1-9][0-9]{5}$/, "Invalid pincode"],
       },
     },
 

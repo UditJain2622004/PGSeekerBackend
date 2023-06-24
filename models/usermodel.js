@@ -14,9 +14,10 @@ const userSchema = new mongoose.Schema({
     required: [true, "No email given!! email required"],
     unique: true,
     lowercase: true,
-    match: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-    message: "Please provide a valid email",
-    // validate: [validator.isEmail, "Please provide a valid email"],
+    match: [
+      /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+      "Please provide a valid email",
+    ],
   },
   created: {
     type: Date,
@@ -24,6 +25,23 @@ const userSchema = new mongoose.Schema({
   },
   updated: {
     type: Date,
+  },
+  phone: {
+    type: String,
+    match: [/^\d{10}$/, "Invalid phone number"],
+  },
+  about: {
+    type: String,
+  },
+  address: {
+    locality: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    pincode: {
+      type: String,
+      required: true,
+      match: [/^[1-9][0-9]{5}$/, "Invalid pincode"],
+    },
   },
   role: {
     type: String,
