@@ -15,7 +15,8 @@ const userSchema = new mongoose.Schema({
     unique: true,
     lowercase: true,
     match: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-    validate: [validator.isEmail, "Please provide a valid email"],
+    message: "Please provide a valid email",
+    // validate: [validator.isEmail, "Please provide a valid email"],
   },
   created: {
     type: Date,

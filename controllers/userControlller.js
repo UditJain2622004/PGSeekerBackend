@@ -2,6 +2,7 @@ const express = require("express");
 const AppError = require("./../utils/appError");
 
 const User = require("./../models/usermodel.js");
+const Pg = require("../models/pgmodel");
 
 const filterObj = (obj, allowedFields) => {
   const newObj = {};
@@ -42,8 +43,20 @@ exports.updateMe = async (req, res, next) => {
 };
 
 exports.getMe = async (req, res, next) => {
-  req.params.id = req.user.id;
-  next();
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return next(new AppError("No document found with that id", 404));
+    const pgs = await Pg.find({ pgOwner: user._id });
+    res.status(200).json({
+      status: "success",
+      data: {
+        user,
+        pgs,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
 //  ADMIN USE -------------------------------------------------------------------------------------------------------------------------

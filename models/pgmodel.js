@@ -21,7 +21,12 @@ const pgSchema = new mongoose.Schema(
       locality: { type: String, required: true },
       city: { type: String, required: true },
       state: { type: String, required: true },
-      pincode: { type: String, required: true },
+      pincode: {
+        type: String,
+        required: true,
+        match: /^[1-9][0-9]{5}$/,
+        message: "Invalid pincode",
+      },
     },
 
     // sharing: [

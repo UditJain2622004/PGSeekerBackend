@@ -7,12 +7,28 @@ const AppError = require("./../utils/appError");
 const Pg = require("./../models/pgmodel.js");
 const { log } = require("console");
 
-const capitalizeEachWord = (str) => {
-  const capital = str.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
-    letter.toUpperCase()
-  );
-  return capital;
-};
+// const capitalizeEachWord = (str) => {
+//   const capital = str.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+//     letter.toUpperCase()
+//   );
+//   return capital;
+// };
+function capitalizeEachWord(sentence) {
+  // Split the sentence into an array of words
+  const words = sentence.split(" ");
+
+  // Capitalize the first letter and lowercase the rest for each word
+  const capitalizedWords = words.map((word) => {
+    const firstLetter = word.charAt(0).toUpperCase();
+    const restLetters = word.slice(1).toLowerCase();
+    return firstLetter + restLetters;
+  });
+
+  // Join the capitalized words back into a sentence
+  const capitalizedSentence = capitalizedWords.join(" ");
+
+  return capitalizedSentence;
+}
 
 if (!fs.existsSync("./uploads")) {
   fs.mkdirSync("./uploads");
@@ -24,7 +40,15 @@ var storage = multer.diskStorage({
     cb(null, "./uploads");
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    var uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+
+    // Append the unique identifier to the original filename
+    var fileName = uniqueSuffix + "-" + file.originalname;
+    if (!req.filenames) req.filenames = [];
+    req.filenames.push(fileName);
+
+    cb(null, fileName);
+    // cb(null, file.originalname);
   },
 });
 
@@ -74,7 +98,8 @@ exports.uploadPics = async (req, res, next) => {
       const retryDelay = 1000; // Delay between retries in milliseconds
 
       for (let i = 0; i < req.files.length; i++) {
-        const localFilePath = "./uploads/" + req.files[i].originalname;
+        const localFilePath = "./uploads/" + req.filenames[i];
+        // const localFilePath = "./uploads/" + req.files[i].originalname;
         promises.push(
           uploadToCloudinaryWithRetries(
             localFilePath,
@@ -241,7 +266,7 @@ exports.createPgDoc = async (req, res, next) => {
     req.body.minPrice = Math.min(...prices);
     req.body.maxPrice = Math.max(...prices);
     req.body.pgOwner = req.body.userID;
-    req.body.address.locality = req.body.address.locality.toLowerCase();
+    // req.body.address.locality = req.body.address.locality.toLowerCase();
     req.body.address.city = req.body.address.city.toLowerCase();
     req.body.address.state = req.body.address.state.toLowerCase();
     // req.body.pgType = req.body.pgType.toLowerCase();
@@ -271,9 +296,10 @@ exports.createPg = async (req, res, next) => {
       },
     };
     if (req.files && !req.body.images) {
+      console.log("Images not uploaded");
       response.status = "imageUploadFailed";
     }
-    // console.log(newPg);
+    console.log("PG created");
     res.status(201).json(response);
   } catch (err) {
     next(err);
