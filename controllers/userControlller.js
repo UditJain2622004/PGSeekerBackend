@@ -22,9 +22,15 @@ exports.updateMe = async (req, res, next) => {
         )
       );
 
-    let updates = filterObj(req.body, ["name", "role"]);
+    let updates = filterObj(req.body, [
+      "name",
+      "role",
+      "about",
+      "phone",
+      "address",
+    ]);
     updates.updated = Date.now();
-    const user = await User.findByIdAndUpdate(req.user._id, updates, {
+    const user = await User.findByIdAndUpdate(req.params.id, updates, {
       runValidators: true,
       new: true,
     });

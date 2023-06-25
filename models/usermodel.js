@@ -34,12 +34,11 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   address: {
-    locality: { type: String, required: true },
-    city: { type: String, required: true },
-    state: { type: String, required: true },
+    locality: { type: String },
+    city: { type: String },
+    state: { type: String },
     pincode: {
       type: String,
-      required: true,
       match: [/^[1-9][0-9]{5}$/, "Invalid pincode"],
     },
   },
