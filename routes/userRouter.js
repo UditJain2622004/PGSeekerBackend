@@ -23,7 +23,7 @@ router.get(
 );
 
 router.patch(
-  "/updatePassword",
+  "/updatePassword/:id",
   authController.protect,
   authController.updatePassword
 );

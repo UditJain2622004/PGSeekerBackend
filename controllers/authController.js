@@ -235,7 +235,7 @@ exports.resetPassword = async (req, res, next) => {
 
 exports.updatePassword = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user._id).select("+password");
+    const user = await User.findById(req.params.id).select("+password");
 
     const password = req.body.currentPassword;
     if (!(await user.comparePassword(password, user.password))) {
