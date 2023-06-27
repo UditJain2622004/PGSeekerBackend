@@ -69,7 +69,11 @@ const pgSchema = new mongoose.Schema(
     },
 
     pgContactInfo: {
-      phone: { type: String, required: true },
+      phone: {
+        type: String,
+        required: true,
+        match: [/^\d{10}$/, "Invalid phone number"],
+      },
       email: {
         type: String,
         lowercase: true,
