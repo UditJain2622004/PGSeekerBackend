@@ -385,11 +385,31 @@ exports.searchPg = async (req, res, next) => {
 
     //{$and: [{ minPrice: { $gte: 5000 } }, { maxPrice: { $lte: 7500 } }],
     if (req.body.price && req.body.price.length > 0) {
-      queryObj.$and = [
-        { minPrice: { $gte: req.body.price[0] } },
-        { maxPrice: { $lte: req.body.price[1] } },
+      // queryObj.$or = [
+      //   {
+      //     minPrice: { $gte: req.body.price[0] },
+      //     minPrice: { $lte: req.body.price[1] },
+      //   },
+      //   {
+      //     maxPrice: { $gte: req.body.price[0] },
+      //     maxPrice: { $lte: req.body.price[1] },
+      //   },
+      // ];
+      queryObj.$or = [
+        {
+          minPrice: { $gte: req.body.price[0], $lte: req.body.price[1] },
+        },
+        {
+          maxPrice: { $gte: req.body.price[0], $lte: req.body.price[1] },
+        },
       ];
     }
+    // if (req.body.price && req.body.price.length > 0) {
+    //   queryObj.$and = [
+    //     { minPrice: { $gte: req.body.price[0] } },
+    //     { maxPrice: { $lte: req.body.price[1] } },
+    //   ];
+    // }
 
     console.log(req.body);
     console.log(queryObj);
