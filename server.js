@@ -4,12 +4,12 @@ const cloudinary = require("cloudinary");
 
 // For handling errors outside express from synchronous code
 // Synchronous code errors emits uncaughtException event , so we can cathc them using that
-// process.on("uncaughtException", (err) => {
-//   console.log("Unhandled Exception!! Shutting down...");
-//   console.log(err.name, err.message);
-//   console.log(err);
-//   process.exit(1);
-// });
+process.on("uncaughtException", (err) => {
+  console.log("Unhandled Exception!! Shutting down...");
+  console.log(err.name, err.message);
+  console.log(err);
+  process.exit(1);
+});
 
 dotenv.config({ path: "./config.env" });
 
@@ -39,13 +39,13 @@ const server = app.listen(process.env.PORT, () => {
 
 // For handling errors outside express from asynchronous code
 // aSynchronous code errors emits unhandledRejection event , so we can catch them using that
-// process.on("unhandledRejection", (err) => {
-//   console.log("Unhandled rejection!! Shutting down...");
-//   console.log(err.name, err.message);
-//   server.close(() => {
-//     process.exit(1);
-//   });
-// });
+process.on("unhandledRejection", (err) => {
+  console.log("Unhandled rejection!! Shutting down...");
+  console.log(err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});
 
 // process.on("SIGTERM", () => {
 //   console.log("SIGTERM recieved! Shutting down");
